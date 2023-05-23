@@ -1,0 +1,71 @@
+package com.ATMInterface;
+
+import javax.swing.*;
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Login {
+
+	
+	
+	public Login() {
+		JFrame frame=new JFrame("Login Page");
+		
+		frame.setSize(300,300);
+		
+		JLabel accountNumber,pin;
+		JTextField accountNumberText;
+		JPasswordField pinText;
+		JButton loginButton;
+		
+		
+		accountNumber = new JLabel("Enter Your Account Number");
+		pin = new JLabel("Enter Pin");
+		accountNumberText = new JTextField(20);
+		pinText = new JPasswordField(20);
+		loginButton =new JButton("Login");
+		
+		frame.setLayout(new FlowLayout());
+		frame.add(accountNumber);
+		frame.add(accountNumberText);
+		frame.add(pin);
+		frame.add(pinText);
+		frame.add(loginButton);
+
+        frame.setVisible(true);
+
+		
+		loginButton.addActionListener(new ActionListener()
+		{
+
+			@SuppressWarnings("deprecation")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if(Registration.registrationDetails.size()==0 || accountNumberText.getText().equals("") || pinText.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(frame, "Please enter all Fields", "Error", JOptionPane.ERROR_MESSAGE);
+				}	
+				else if(Registration.registrationDetails.get(1).equals(accountNumberText.getText()) && Registration.registrationDetails.get(2).equals(pinText.getText()))
+				{
+					frame.dispose();
+					new Home();
+					
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(frame, "Account Number or Pin is Incorrect", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			
+		});
+
+		
+	}
+	
+	
+
+}
+
